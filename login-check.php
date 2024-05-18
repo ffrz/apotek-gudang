@@ -1,15 +1,5 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
-
 <?php
-// panggil file untuk koneksi ke database
+
 require_once "config/database.php";
 
 // ambil data hasil submit dari form
@@ -45,4 +35,3 @@ if (!ctype_alnum($username) or !ctype_alnum($password)) {
 	// jika data tidak ada, alihkan ke halaman login dan tampilkan pesan = 1
 	header("Location: index.php?alert=1");
 }
-?>

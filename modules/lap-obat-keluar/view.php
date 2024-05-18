@@ -1,13 +1,3 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -19,31 +9,26 @@
     <li class="active">Data Obat Keluar</li>
   </ol>
 </section>
-
 <!-- Main content -->
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-
       <!-- Form Laporan -->
       <div class="box box-primary">
         <!-- form start -->
         <form role="form" class="form-horizontal" method="GET" action="modules/lap-obat-keluar/cetak.php" target="_blank">
           <div class="box-body">
-
             <div class="form-group">
               <label class="col-sm-1">Tanggal</label>
               <div class="col-sm-2">
                 <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy" name="tgl_awal" autocomplete="off" required>
               </div>
-
               <label class="col-sm-1">s.d.</label>
               <div class="col-sm-2">
                 <input style="margin-left:-35px" type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy" name="tgl_akhir" autocomplete="off" required>
               </div>
             </div>
           </div>
-
           <div class="box-footer">
             <div class="form-group">
               <div class="col-sm-offset-1 col-sm-11">

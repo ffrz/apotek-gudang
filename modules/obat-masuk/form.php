@@ -1,13 +1,3 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
-
 <script type="text/javascript">
   function tampil_obat(input){
     var num = input.value;
@@ -95,14 +85,14 @@ if ($_GET['form']=='add') { ?>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Kode Transaksi</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="kode_transaksi" value="<?php echo $kode_transaksi; ?>" readonly required>
+                  <input type="text" class="form-control" name="kode_transaksi" value="<?= $kode_transaksi; ?>" readonly required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">Tanggal</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy" name="tanggal_masuk" autocomplete="off" value="<?php echo date("d-m-Y"); ?>" required>
+                  <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy" name="tanggal_masuk" autocomplete="off" value="<?= date("d-m-Y"); ?>" required>
                 </div>
               </div>
 

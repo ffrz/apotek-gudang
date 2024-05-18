@@ -1,68 +1,27 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
     <i class="fa fa-th icon-title"></i> Data Obat
-
     <?php if ($_SESSION['hak_akses'] == 'Admin' || $_SESSION['hak_akses'] == 'Gudang') : ?>
       <a class="btn btn-primary btn-social pull-right" href="?module=form_obat&form=add" title="Tambah Data" data-toggle="tooltip">
         <i class="fa fa-plus"></i> Tambah
       </a>
     <?php endif ?>
   </h1>
-
 </section>
-
 <!-- Main content -->
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-
-      <?php
-      // fungsi untuk menampilkan pesan
-      // jika alert = "" (kosong)
-      // tampilkan pesan "" (kosong)
-      if (empty($_GET['alert'])) {
-        echo "";
-      }
-      // jika alert = 1
-      // tampilkan pesan Sukses "Data obat baru berhasil disimpan"
-      elseif ($_GET['alert'] == 1) {
-        echo "<div class='alert alert-success alert-dismissable'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data obat baru berhasil disimpan.
-            </div>";
-      }
-      // jika alert = 2
-      // tampilkan pesan Sukses "Data obat berhasil diubah"
-      elseif ($_GET['alert'] == 2) {
-        echo "<div class='alert alert-success alert-dismissable'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data obat berhasil diubah.
-            </div>";
-      }
-      // jika alert = 3
-      // tampilkan pesan Sukses "Data obat berhasil dihapus"
-      elseif ($_GET['alert'] == 3) {
-        echo "<div class='alert alert-success alert-dismissable'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data obat berhasil dihapus.
-            </div>";
-      }
-      ?>
-
+      <?php if (isset($_GET['alert'])) : ?>
+        <?php if ($_GET['alert'] == 1) : ?>
+          <?= alert('Data obat baru berhasil disimpan.') ?>
+        <?php elseif ($_GET['alert'] == 2) : ?>
+          <?= alert('Data obat baru berhasil diubah.') ?>
+        <?php elseif ($_GET['alert'] == 3) : ?>
+          <?= alert('Data obat baru berhasil dihapus.') ?>
+        <?php endif ?>
+      <?php endif ?>
       <div class="box box-primary">
         <div class="box-body">
           <!-- tampilan tabel obat -->
@@ -97,15 +56,15 @@
                   <td width='180'><?= $data['nama_obat'] ?></td>
                   <td width='100' align='right'><?= format_rupiah($data['harga_beli']) ?></td>
                   <td width='100' align='right'><?= format_rupiah($data['harga_jual']) ?></td>
-                  <td width='80' align='right'><?= $data['stok'] ?></td>
+                  <td width='80' align='right'><?= format_angka($data['stok']) ?></td>
                   <td width='80' class='center'><?= $data['satuan'] ?></td>
                   <?php if ($_SESSION['hak_akses'] == 'Admin' || $_SESSION['hak_akses'] == 'Gudang') : ?>
                     <td class='center' width='80'>
                       <div>
-                        <a data-toggle='tooltip' data-placement='top' title='Ubah' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_obat&form=edit&id=$data[kode_obat]'>
+                        <a data-toggle='tooltip' data-placement='top' title='Ubah' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_obat&form=edit&id=<?= $data['kode_obat'] ?>'>
                           <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/obat/proses.php?act=delete&id=<?php echo $data['kode_obat']; ?>" onclick="return confirm('Anda yakin ingin menghapus obat <?php echo $data['nama_obat']; ?> ?');">
+                        <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/obat/proses.php?act=delete&id=<?= $data['kode_obat'] ?>" onclick="return confirm('Anda yakin ingin menghapus obat <?= $data['nama_obat'] ?> ?');">
                           <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                         </a>
                       </div>

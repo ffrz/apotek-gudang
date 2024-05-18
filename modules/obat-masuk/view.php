@@ -1,14 +1,3 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
-
-<!-- Content Header (Page header) -->
 <?php
 
 // fungsi query untuk menampilkan data dari tabel obat
@@ -50,32 +39,13 @@ while ($item = mysqli_fetch_assoc($query)) {
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-
-      <?php
-      // fungsi untuk menampilkan pesan
-      // jika alert = "" (kosong)
-      // tampilkan pesan "" (kosong)
-      if (empty($_GET['alert'])) {
-        echo "";
-      }
-      // jika alert = 1
-      // tampilkan pesan Sukses "Data Obat Masuk berhasil disimpan"
-      elseif ($_GET['alert'] == 1) {
-        echo "<div class='alert alert-success alert-dismissable'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Obat Masuk berhasil disimpan.
-            </div>";
-      }
-      elseif ($_GET['alert'] == 2) {
-        echo "<div class='alert alert-success alert-dismissable'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Obat Masuk berhasil dihapus.
-            </div>";
-      }
-      ?>
-
+      <?php if (isset($_GET['alert'])) : ?>
+        <?php if (isset($_GET['alert']) && $_GET['alert'] == 1) : ?>
+          <?= alert('Data Obat Masuk berhasil disimpan.') ?>
+        <?php elseif ($_GET['alert'] == 2) : ?>
+          <?= alert('Data Obat Masuk berhasil dihapus.') ?>
+        <?php endif ?>
+      <?php endif ?>
       <div class="box box-primary">
         <div class="box-body">
           <!-- tampilan tabel Obat -->
@@ -104,13 +74,11 @@ while ($item = mysqli_fetch_assoc($query)) {
                   <td width='80' class='center'><?= tgl_indo_short($item['tanggal_masuk']) ?></td>
                   <td width='80' class='center'><?= $item['kode_obat'] ?></td>
                   <td width='200'><?= $item['nama_obat'] ?></td>
-                  <td width='100' align='right'><?= $item['jumlah_masuk'] ?></td>
+                  <td width='100' align='right'><?= format_angka($item['jumlah_masuk']) ?></td>
                   <td width='80' class='center'><?= $item['satuan'] ?></td>
                   <?php if ($_SESSION['hak_akses'] == 'Admin') : ?>
                     <td class="center" width='30'>
-                      <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm"
-                        href="modules/obat-masuk/proses.php?act=delete&kode_transaksi=<?= $item['kode_transaksi'] ?>"
-                        onclick="return confirm('Anda yakin ingin menghapus data obat masuk <?= $item['kode_transaksi'] ?> ?');">
+                      <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/obat-masuk/proses.php?act=delete&kode_transaksi=<?= $item['kode_transaksi'] ?>" onclick="return confirm('Anda yakin ingin menghapus data obat masuk <?= $item['kode_transaksi'] ?> ?');">
                         <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                       </a>
                     </td>

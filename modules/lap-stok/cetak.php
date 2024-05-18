@@ -1,28 +1,14 @@
 <?php
-session_start();
-ob_start();
 
-// Panggil koneksi database.php untuk koneksi database
-require_once "../../config/database.php";
-// panggil fungsi untuk format tanggal
-include "../../config/fungsi_tanggal.php";
-// panggil fungsi untuk format rupiah
-include "../../config/fungsi_rupiah.php";
+require_once "../../_init.php";
 
-$hari_ini = date("d-m-Y");
+$hari_ini = date("Y-m-d");
+$list_obat = get_all_obat();
 
-$no = 1;
-// fungsi query untuk menampilkan data dari tabel obat
-$query = mysqli_query($mysqli, "
-    SELECT kode_obat,nama_obat,harga_beli,harga_jual,satuan,stok
-    FROM is_obat
-    ORDER BY nama_obat ASC
-    ")
-    or die('Ada kesalahan pada query tampil Data Obat: ' . mysqli_error($mysqli));
-
-$count  = mysqli_num_rows($query);
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml"> <!-- Bagian halaman HTML yang akan konvert -->
+<!DOCTYPE html>
+<html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>LAPORAN STOK OBAT</title>
@@ -48,18 +34,17 @@ $count  = mysqli_num_rows($query);
                 </tr>
             </thead>
             <tbody>
-                <?php while ($data = mysqli_fetch_assoc($query)) : ?>
+                <?php foreach ($list_obat as $no => $data) : ?>
                     <tr>
-                        <td width='40' height='13' align='center'><?= $no ?></td>
-                        <td width='80' height='13' align='center'><?= $data['kode_obat'] ?></td>
-                        <td style='padding-left:5px;' width='180' height='13'><?= strtoupper($data['nama_obat']) ?></td>
+                        <td width='40' height='13' align='center'><?= $no+1 ?></td>
+                        <td width='80' height='13' align='left'><?= $data['kode_obat'] ?></td>
+                        <td style='padding-left:5px;' width='180' height='13'align='left'><?= strtoupper($data['nama_obat']) ?></td>
                         <td style='padding-right:10px;' width='80' height='13' align='right'><?= format_angka($data['harga_beli']) ?></td>
                         <td style='padding-right:10px;' width='80' height='13' align='right' valign='middle'><?= format_angka($data['harga_jual']) ?></td>
                         <td style='padding-right:10px;' width='80' height='13' align='right' valign='middle'><?= format_angka($data['stok']) ?></td>
                         <td width='80' height='13' align='left' valign='middle'><?= strtoupper($data['satuan']) ?></td>
                     </tr>
-                    <?php $no++ ?>
-                <?php endwhile ?>
+                <?php endforeach ?>
             </tbody>
         </table>
 
@@ -76,22 +61,4 @@ $count  = mysqli_num_rows($query);
     </div>
 </body>
 
-</html><!-- Akhir halaman HTML yang akan di konvert -->
-<?php
-$filename = "LAPORAN STOK OBAT.pdf"; //ubah untuk menentukan nama file pdf yang dihasilkan nantinya
-//==========================================================================================================
-$content = ob_get_clean();
-echo $content;
-// $content = '<page style="font-family: freeserif">'.($content).'</page>';
-// panggil library html2pdf
-// require_once('../../assets/plugins/html2pdf_v4.03/html2pdf.class.php');
-
-// try
-// {
-//     $html2pdf = new HTML2PDF('P','F4','en', false, 'ISO-8859-15',array(10, 10, 10, 10));
-//     $html2pdf->setDefaultFont('Arial');
-//     $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
-//     $html2pdf->Output($filename);
-// }
-// catch(HTML2PDF_exception $e) { echo $e; }
-?>
+</html>

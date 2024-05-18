@@ -1,18 +1,7 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>
-    <i class="fa fa-home icon-title"></i> Beranda
-  </h1>
+  <h1><i class="fa fa-home icon-title"></i> Beranda</h1>
   <ol class="breadcrumb">
     <li><a href="?module=beranda"><i class="fa fa-home"></i> Beranda</a></li>
   </ol>
@@ -37,15 +26,7 @@
       <!-- small box -->
       <div style="background-color:#00c0ef;color:#fff" class="small-box">
         <div class="inner">
-          <?php
-          // fungsi query untuk menampilkan data dari tabel obat
-          $query = mysqli_query($mysqli, "SELECT COUNT(kode_obat) as jumlah FROM is_obat")
-            or die('Ada kesalahan pada query tampil Data Obat: ' . mysqli_error($mysqli));
-
-          // tampilkan data
-          $data = mysqli_fetch_assoc($query);
-          ?>
-          <h3><?php echo $data['jumlah']; ?></h3>
+          <h3><?= get_jumlah_data_obat() ?></h3>
           <p>Data Obat</p>
         </div>
         <div class="icon">
@@ -53,7 +34,7 @@
         </div>
         <?php if ($_SESSION['hak_akses'] === 'Admin' || $_SESSION['hak_akses'] === 'Gudang') : ?>
           <a href="?module=form_obat&form=add" class="small-box-footer" title="Tambah Data" data-toggle="tooltip"><i class="fa fa-plus"></i></a>
-          <?php elseif ($_SESSION['hak_akses'] === 'Owner') : ?>
+        <?php elseif ($_SESSION['hak_akses'] === 'Owner') : ?>
           <a href="?module=obat" class="small-box-footer" title="Tambah Data" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
         <?php endif ?>
       </div>
@@ -63,15 +44,7 @@
       <!-- small box -->
       <div style="background-color:#00a65a;color:#fff" class="small-box">
         <div class="inner">
-          <?php
-          // fungsi query untuk menampilkan data dari tabel obat masuk
-          $query = mysqli_query($mysqli, "SELECT COUNT(kode_transaksi) as jumlah FROM is_obat_masuk")
-            or die('Ada kesalahan pada query tampil Data obat Masuk: ' . mysqli_error($mysqli));
-
-          // tampilkan data
-          $data = mysqli_fetch_assoc($query);
-          ?>
-          <h3><?php echo $data['jumlah']; ?></h3>
+          <h3><?= get_jumlah_data_obat_masuk() ?></h3>
           <p>Data Obat Masuk</p>
         </div>
         <div class="icon">
@@ -89,15 +62,7 @@
       <!-- small box -->
       <div style="background-color:#0088aa;color:#fff" class="small-box">
         <div class="inner">
-          <?php
-          // fungsi query untuk menampilkan data dari tabel obat keluar
-          $query = mysqli_query($mysqli, "SELECT COUNT(kode_transaksi) as jumlah FROM is_obat_keluar")
-            or die('Ada kesalahan pada query tampil Data obat Masuk: ' . mysqli_error($mysqli));
-
-          // tampilkan data
-          $data = mysqli_fetch_assoc($query);
-          ?>
-          <h3><?php echo $data['jumlah']; ?></h3>
+          <h3><?= get_jumlah_data_obat_keluar() ?></h3>
           <p>Data Obat Keluar</p>
         </div>
         <div class="icon">
@@ -116,15 +81,7 @@
         <!-- small box -->
         <div style="background-color:#f39c12;color:#fff" class="small-box">
           <div class="inner">
-            <?php
-            // fungsi query untuk menampilkan data dari tabel obat
-            $query = mysqli_query($mysqli, "SELECT COUNT(kode_obat) as jumlah FROM is_obat")
-              or die('Ada kesalahan pada query tampil Data Obat: ' . mysqli_error($mysqli));
-
-            // tampilkan data
-            $data = mysqli_fetch_assoc($query);
-            ?>
-            <h3><?php echo $data['jumlah']; ?></h3>
+          <h3><?= get_jumlah_data_obat() ?></h3>
             <p>Laporan Stok Obat</p>
           </div>
           <div class="icon">
@@ -139,15 +96,7 @@
         <!-- small box -->
         <div style="background-color:#dd4b39;color:#fff" class="small-box">
           <div class="inner">
-            <?php
-            // fungsi query untuk menampilkan data dari tabel obat masuk
-            $query = mysqli_query($mysqli, "SELECT COUNT(kode_transaksi) as jumlah FROM is_obat_masuk")
-              or die('Ada kesalahan pada query tampil Data obat Masuk: ' . mysqli_error($mysqli));
-
-            // tampilkan data
-            $data = mysqli_fetch_assoc($query);
-            ?>
-            <h3><?php echo $data['jumlah']; ?></h3>
+            <h3><?= get_jumlah_data_obat_masuk() ?></h3>
             <p>Laporan Obat Masuk</p>
           </div>
           <div class="icon">
@@ -162,15 +111,7 @@
         <!-- small box -->
         <div style="background-color:#dd4bee;color:#fff" class="small-box">
           <div class="inner">
-            <?php
-            // fungsi query untuk menampilkan data dari tabel obat masuk
-            $query = mysqli_query($mysqli, "SELECT COUNT(kode_transaksi) as jumlah FROM is_obat_keluar")
-              or die('Ada kesalahan pada query tampil Data obat Keluar: ' . mysqli_error($mysqli));
-
-            // tampilkan data
-            $data = mysqli_fetch_assoc($query);
-            ?>
-            <h3><?php echo $data['jumlah']; ?></h3>
+            <h3><?= get_jumlah_data_obat_keluar() ?></h3>
             <p>Laporan Obat Keluar</p>
           </div>
           <div class="icon">

@@ -1,13 +1,3 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
-
 <?php  
 // fungsi untuk pengecekan tampilan form
 // jika form add data yang dipilih
@@ -115,12 +105,12 @@ elseif ($_GET['form']=='edit') {
           <form role="form" class="form-horizontal" method="POST" action="modules/user/proses.php?act=update" enctype="multipart/form-data">
             <div class="box-body">
 
-              <input type="hidden" name="id_user" value="<?php echo $data['id_user']; ?>">
+              <input type="hidden" name="id_user" value="<?= $data['id_user']; ?>">
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">Username</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="username" autocomplete="off" value="<?php echo $data['username']; ?>" required>
+                  <input type="text" class="form-control" name="username" autocomplete="off" value="<?= $data['username']; ?>" required>
                 </div>
               </div>
 
@@ -134,21 +124,21 @@ elseif ($_GET['form']=='edit') {
               <div class="form-group">
                 <label class="col-sm-2 control-label">Nama User</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="nama_user" autocomplete="off" value="<?php echo $data['nama_user']; ?>" required>
+                  <input type="text" class="form-control" name="nama_user" autocomplete="off" value="<?= $data['nama_user']; ?>" required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-5">
-                  <input type="email" class="form-control" name="email" autocomplete="off" value="<?php echo $data['email']; ?>">
+                  <input type="email" class="form-control" name="email" autocomplete="off" value="<?= $data['email']; ?>">
                 </div>
               </div>
             
               <div class="form-group">
                 <label class="col-sm-2 control-label">Telepon</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="telepon" autocomplete="off" maxlength="13" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['telepon']; ?>">
+                  <input type="text" class="form-control" name="telepon" autocomplete="off" maxlength="13" onKeyPress="return goodchars(event,'0123456789',this)" value="<?= $data['telepon']; ?>">
                 </div>
               </div>
 
@@ -163,7 +153,7 @@ elseif ($_GET['form']=='edit') {
                 <?php
                 }
                 else { ?>
-                  <img style="border:1px solid #eaeaea;border-radius:5px;" src="images/user/<?php echo $data['foto']; ?>" width="128">
+                  <img style="border:1px solid #eaeaea;border-radius:5px;" src="images/user/<?= $data['foto']; ?>" width="128">
                 <?php
                 }
                 ?>
@@ -174,7 +164,7 @@ elseif ($_GET['form']=='edit') {
                 <label class="col-sm-2 control-label">Hak Akses</label>
                 <div class="col-sm-5">
                   <select class="form-control" name="hak_akses" required>
-                    <option value="<?php echo $data['hak_akses']; ?>"><?php echo $data['hak_akses']; ?></option>
+                    <option value="<?= $data['hak_akses']; ?>"><?= $data['hak_akses']; ?></option>
                     <option value="Super Admin">Super Admin</option>
                     <option value="Manajer">Manajer</option>
                     <option value="Gudang">Gudang</option>
