@@ -11,7 +11,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-folder-o icon-title"></i> Data Obat
+    <i class="fa fa-th icon-title"></i> Data Obat
 
     <a class="btn btn-primary btn-social pull-right" href="?module=form_obat&form=add" title="Tambah Data" data-toggle="tooltip">
       <i class="fa fa-plus"></i> Tambah
