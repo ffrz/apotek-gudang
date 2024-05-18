@@ -481,9 +481,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `nama_user`, `password`, `email`, `telepon`, `foto`, `hak_akses`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', '827ccb0eea8a706c4c34a16891f84e7b', 'admin@apotek.local', '081212341234', 'admin.jpg', 'Admin', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:52:29'),
-(2, 'owner', 'Owner', '827ccb0eea8a706c4c34a16891f84e7b', 'owner@apotek.local', '081212341234', 'kadina.png', 'Owner', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:55:51'),
-(3, 'gudang', 'Gudang', '827ccb0eea8a706c4c34a16891f84e7b', 'gudang@apotek.local', '081212341234', '', 'Gudang', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:49:16');
+(1, 'admin', 'Administrator', '827ccb0eea8a706c4c34a16891f84e7b', 'admin@apotek.local', '081212341234', 'admin.png', 'Admin', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:52:29'),
+(2, 'owner', 'Owner', '827ccb0eea8a706c4c34a16891f84e7b', 'owner@apotek.local', '081212341234', 'owner.png', 'Owner', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:55:51'),
+(3, 'gudang', 'Gudang', '827ccb0eea8a706c4c34a16891f84e7b', 'gudang@apotek.local', '081212341234', 'gudang.png', 'Gudang', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:49:16');
 
 --
 -- Indexes for dumped tables
