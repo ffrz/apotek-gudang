@@ -29,12 +29,13 @@ else {
             $harga_beli = str_replace('.', '', mysqli_real_escape_string($mysqli, trim($_POST['harga_beli'])));
             $harga_jual = str_replace('.', '', mysqli_real_escape_string($mysqli, trim($_POST['harga_jual'])));
             $satuan     = mysqli_real_escape_string($mysqli, trim($_POST['satuan']));
+            $stok       = 0;
 
             $created_user = $_SESSION['id_user'];
 
             // perintah query untuk menyimpan data ke tabel obat
-            $query = mysqli_query($mysqli, "INSERT INTO is_obat(kode_obat,nama_obat,harga_beli,harga_jual,satuan,created_user,updated_user) 
-                                            VALUES('$kode_obat','$nama_obat','$harga_beli','$harga_jual','$satuan','$created_user','$created_user')")
+            $query = mysqli_query($mysqli, "INSERT INTO is_obat(kode_obat,nama_obat,harga_beli,harga_jual,stok,satuan,created_user,updated_user) 
+                                            VALUES('$kode_obat','$nama_obat','$harga_beli','$harga_jual','$stok','$satuan','$created_user','$created_user')")
                                             or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
 
             // cek query

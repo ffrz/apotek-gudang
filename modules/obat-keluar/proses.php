@@ -26,19 +26,19 @@ else {
             // ambil data hasil submit dari form
             $kode_transaksi = mysqli_real_escape_string($mysqli, trim($_POST['kode_transaksi']));
 
-            $tanggal         = mysqli_real_escape_string($mysqli, trim($_POST['tanggal_masuk']));
+            $tanggal         = mysqli_real_escape_string($mysqli, trim($_POST['tanggal_keluar']));
             $exp             = explode('-', $tanggal);
-            $tanggal_masuk   = $exp[2] . "-" . $exp[1] . "-" . $exp[0];
+            $tanggal_keluar   = $exp[2] . "-" . $exp[1] . "-" . $exp[0];
 
             $kode_obat       = mysqli_real_escape_string($mysqli, trim($_POST['kode_obat']));
-            $jumlah_masuk    = mysqli_real_escape_string($mysqli, trim($_POST['jumlah_masuk']));
+            $jumlah_keluar   = mysqli_real_escape_string($mysqli, trim($_POST['jumlah_keluar']));
             $total_stok      = mysqli_real_escape_string($mysqli, trim($_POST['total_stok']));
 
             $created_user    = $_SESSION['id_user'];
 
-            // perintah query untuk menyimpan data ke tabel obat masuk
-            $query = mysqli_query($mysqli, "INSERT INTO is_obat_masuk(kode_transaksi,tanggal_masuk,kode_obat,jumlah_masuk,created_user) 
-                                            VALUES('$kode_transaksi','$tanggal_masuk','$kode_obat','$jumlah_masuk','$created_user')")
+            // perintah query untuk menyimpan data ke tabel obat keluar
+            $query = mysqli_query($mysqli, "INSERT INTO is_obat_keluar(kode_transaksi,tanggal_keluar,kode_obat,jumlah_keluar,created_user) 
+                                            VALUES('$kode_transaksi','$tanggal_keluar','$kode_obat','$jumlah_keluar','$created_user')")
                 or die('Ada kesalahan pada query insert : ' . mysqli_error($mysqli));
 
             // cek query
@@ -51,33 +51,34 @@ else {
                 // cek query
                 if ($query1) {
                     // jika berhasil tampilkan pesan berhasil simpan data
-                    header("location: ../../main.php?module=obat_masuk&alert=1");
+                    header("location: ../../main.php?module=obat_keluar&alert=1");
                 }
             }
         }
-    }
-    else if ($_GET['act'] == 'delete') {
+    } else if ($_GET['act'] == 'delete') {
         $kode_transaksi = mysqli_real_escape_string($mysqli, trim($_GET['kode_transaksi']));
-
-        $query = mysqli_query($mysqli, "SELECT * FROM is_obat_masuk WHERE kode_transaksi='$kode_transaksi'")
+        $query = mysqli_query($mysqli, "SELECT * FROM is_obat_keluar WHERE kode_transaksi='$kode_transaksi'")
             or die('Ada kesalahan pada query delete : ' . mysqli_error($mysqli));
-        $obat_masuk = mysqli_fetch_assoc($query);
-        $kode_obat = $obat_masuk['kode_obat'];
+        $obat_keluar = mysqli_fetch_assoc($query);
+
+        $kode_obat = $obat_keluar['kode_obat'];
         $query = mysqli_query($mysqli, "SELECT * FROM is_obat WHERE kode_obat='$kode_obat'")
             or die('Ada kesalahan pada query delete : ' . mysqli_error($mysqli));
         $obat = mysqli_fetch_assoc($query);
-        $stok_sebelumnya = $obat['stok'] - $obat_masuk['jumlah_masuk'];
+
+        $stok_sebelumnya = $obat['stok'] + $obat_keluar['jumlah_keluar'];
 
         mysqli_begin_transaction($mysqli);
         // perintah query untuk mengembalikan stok pada tabel obat
         $query = mysqli_query($mysqli, "UPDATE is_obat SET stok='$stok_sebelumnya' WHERE kode_obat='$kode_obat'")
             or die('Ada kesalahan pada query update : ' . mysqli_error($mysqli));
-        // perintah query untuk menghapus data pada tabel obat masuk
-        $query = mysqli_query($mysqli, "DELETE FROM is_obat_masuk WHERE kode_transaksi='$kode_transaksi'")
+            
+        // perintah query untuk menghapus data pada tabel obat keluar
+        $query = mysqli_query($mysqli, "DELETE FROM is_obat_keluar WHERE kode_transaksi='$kode_transaksi'")
             or die('Ada kesalahan pada query delete : ' . mysqli_error($mysqli));
         mysqli_commit($mysqli);
 
-        header("location: ../../main.php?module=obat_masuk&alert=2");
+        header("location: ../../main.php?module=obat_keluar&alert=2");
     }
 }
 ?>

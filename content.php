@@ -47,6 +47,16 @@ else {
 	elseif ($_GET['module'] == 'form_obat_masuk') {
 		include "modules/obat-masuk/form.php";
 	}
+
+	// jika halaman konten yang dipilih obat keluar, panggil file view obat keluar
+	elseif ($_GET['module'] == 'obat_keluar') {
+		include "modules/obat-keluar/view.php";
+	}
+
+	// jika halaman konten yang dipilih form obat keluar, panggil file form obat keluar
+	elseif ($_GET['module'] == 'form_obat_keluar') {
+		include "modules/obat-keluar/form.php";
+	}
 	// -----------------------------------------------------------------------------
 
 	// jika halaman konten yang dipilih laporan stok, panggil file view laporan stok
@@ -58,6 +68,12 @@ else {
 	// jika halaman konten yang dipilih laporan obat masuk, panggil file view laporan obat masuk
 	elseif ($_GET['module'] == 'lap_obat_masuk') {
 		include "modules/lap-obat-masuk/view.php";
+	}
+	// -----------------------------------------------------------------------------
+
+	// jika halaman konten yang dipilih laporan obat masuk, panggil file view laporan obat masuk
+	elseif ($_GET['module'] == 'lap_obat_keluar') {
+		include "modules/lap-obat-keluar/view.php";
 	}
 	// -----------------------------------------------------------------------------
 

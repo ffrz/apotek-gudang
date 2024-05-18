@@ -15,17 +15,17 @@
 $query = mysqli_query($mysqli, "
   SELECT
     a.kode_transaksi,
-    a.tanggal_masuk,
+    a.tanggal_keluar,
     a.kode_obat,
-    a.jumlah_masuk,
+    a.jumlah_keluar,
     b.kode_obat,
     b.nama_obat,
     b.satuan
-  FROM is_obat_masuk as a
+  FROM is_obat_keluar as a
   INNER JOIN is_obat as b ON a.kode_obat=b.kode_obat
   ORDER BY kode_transaksi DESC
   ")
-  or die('Ada kesalahan pada query tampil Data Obat Masuk: ' . mysqli_error($mysqli));
+  or die('Ada kesalahan pada query tampil Data Obat Keluar: ' . mysqli_error($mysqli));
 
 // tampilkan data
 $items = [];
@@ -35,10 +35,10 @@ while ($item = mysqli_fetch_assoc($query)) {
 ?>
 <section class="content-header">
   <h1>
-    <i class="fa fa-sign-in icon-title"></i> Data Obat Masuk
+    <i class="fa fa-sign-out icon-title"></i> Data Obat Keluar
 
     <?php if ($_SESSION['hak_akses'] == 'Admin' || $_SESSION['hak_akses'] == 'Gudang') : ?>
-      <a class="btn btn-primary btn-social pull-right" href="?module=form_obat_masuk&form=add" title="Tambah Data" data-toggle="tooltip">
+      <a class="btn btn-primary btn-social pull-right" href="?module=form_obat_keluar&form=add" title="Tambah Data" data-toggle="tooltip">
         <i class="fa fa-plus"></i> Tambah
       </a>
     <?php endif ?>
@@ -59,19 +59,12 @@ while ($item = mysqli_fetch_assoc($query)) {
         echo "";
       }
       // jika alert = 1
-      // tampilkan pesan Sukses "Data Obat Masuk berhasil disimpan"
+      // tampilkan pesan Sukses "Data Obat Keluar berhasil disimpan"
       elseif ($_GET['alert'] == 1) {
         echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Obat Masuk berhasil disimpan.
-            </div>";
-      }
-      elseif ($_GET['alert'] == 2) {
-        echo "<div class='alert alert-success alert-dismissable'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Obat Masuk berhasil dihapus.
+              Data Obat Keluar berhasil disimpan.
             </div>";
       }
       ?>
@@ -88,7 +81,7 @@ while ($item = mysqli_fetch_assoc($query)) {
                 <th class="center">Tanggal</th>
                 <th class="center">Kode Obat</th>
                 <th class="center">Nama Obat</th>
-                <th class="center">Jumlah Masuk</th>
+                <th class="center">Jumlah Keluar</th>
                 <th class="center">Satuan</th>
                 <?php if ($_SESSION['hak_akses'] == 'Admin') : ?>
                   <th class="center">Aksi</th>
@@ -101,16 +94,16 @@ while ($item = mysqli_fetch_assoc($query)) {
                 <tr>
                   <td width='30' class='center'><?= $num + 1 ?></td>
                   <td width='100' class='center'><?= $item['kode_transaksi'] ?></td>
-                  <td width='80' class='center'><?= tgl_indo_short($item['tanggal_masuk']) ?></td>
+                  <td width='80' class='center'><?= tgl_indo_short($item['tanggal_keluar']) ?></td>
                   <td width='80' class='center'><?= $item['kode_obat'] ?></td>
                   <td width='200'><?= $item['nama_obat'] ?></td>
-                  <td width='100' align='right'><?= $item['jumlah_masuk'] ?></td>
+                  <td width='100' align='right'><?= $item['jumlah_keluar'] ?></td>
                   <td width='80' class='center'><?= $item['satuan'] ?></td>
                   <?php if ($_SESSION['hak_akses'] == 'Admin') : ?>
                     <td class="center" width='30'>
                       <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm"
-                        href="modules/obat-masuk/proses.php?act=delete&kode_transaksi=<?= $item['kode_transaksi'] ?>"
-                        onclick="return confirm('Anda yakin ingin menghapus data obat masuk <?= $item['kode_transaksi'] ?> ?');">
+                        href="modules/obat-keluar/proses.php?act=delete&kode_transaksi=<?= $item['kode_transaksi'] ?>"
+                        onclick="return confirm('Anda yakin ingin menghapus data obat keluar <?= $item['kode_transaksi'] ?> ?');">
                         <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                       </a>
                     </td>
