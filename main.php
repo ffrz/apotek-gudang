@@ -154,7 +154,7 @@ session_start();
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <strong>Copyright &copy; 2017 - <a href="www.indrasatya.com">www.indrasatya.com</a>.</strong>
+        <strong>Copyright &copy; 2024 - Apotek Enggal Waras.</strong>
       </footer>
     </div><!-- ./wrapper -->
 
