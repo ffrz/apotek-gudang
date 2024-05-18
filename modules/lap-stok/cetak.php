@@ -66,14 +66,14 @@ $count  = mysqli_num_rows($query);
             </table>
 
             <div id="footer-tanggal">
-                Bandarlampung, <?php echo tgl_eng_to_ind("$hari_ini"); ?>
+                Talaga, <?php echo tgl_eng_to_ind("$hari_ini"); ?>
             </div>
             <div id="footer-jabatan">
                 Pimpinan
             </div>
             
             <div id="footer-nama">
-                Indra Setyawantoro, S.Kom.
+                Juned
             </div>
         </div>
     </body>
