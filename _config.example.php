@@ -5,8 +5,8 @@ $base_url = '';
 // deklarasi parameter koneksi database
 $server   = "localhost";
 $username = "root";
-$password = "12345";
-$database = "gudang_enggalwaras";
+$password = "";
+$database = "";
 
 // koneksi database
 $mysqli = new mysqli($server, $username, $password, $database);
