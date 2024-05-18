@@ -78,7 +78,7 @@ if ($_GET['form']=='add') { ?>
 elseif ($_GET['form']=='edit') { 
   	if (isset($_GET['id'])) {
       // fungsi query untuk menampilkan data dari tabel user
-      $query = mysqli_query($mysqli, "SELECT * FROM is_users WHERE id_user='$_GET[id]'") 
+      $query = mysqli_query($mysqli, "SELECT * FROM users WHERE id_user='$_GET[id]'") 
                                       or die('Ada kesalahan pada query tampil data user : '.mysqli_error($mysqli));
       $data  = mysqli_fetch_assoc($query);
   	}	

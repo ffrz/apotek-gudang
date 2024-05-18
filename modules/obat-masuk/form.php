@@ -62,7 +62,7 @@ if ($_GET['form']=='add') { ?>
             <div class="box-body">
               <?php  
               // fungsi untuk membuat kode transaksi
-              $query_id = mysqli_query($mysqli, "SELECT RIGHT(kode_transaksi,7) as kode FROM is_obat_masuk
+              $query_id = mysqli_query($mysqli, "SELECT RIGHT(kode_transaksi,7) as kode FROM obat_masuk
                                                 ORDER BY kode_transaksi DESC LIMIT 1")
                                                 or die('Ada kesalahan pada query tampil kode_transaksi : '.mysqli_error($mysqli));
 
@@ -104,7 +104,7 @@ if ($_GET['form']=='add') { ?>
                   <select class="chosen-select" name="kode_obat" data-placeholder="-- Pilih Obat --" onchange="tampil_obat(this)" autocomplete="off" required>
                     <option value=""></option>
                     <?php
-                      $query_obat = mysqli_query($mysqli, "SELECT kode_obat, nama_obat FROM is_obat ORDER BY nama_obat ASC")
+                      $query_obat = mysqli_query($mysqli, "SELECT kode_obat, nama_obat FROM obat ORDER BY nama_obat ASC")
                                                             or die('Ada kesalahan pada query tampil obat: '.mysqli_error($mysqli));
                       while ($data_obat = mysqli_fetch_assoc($query_obat)) {
                         echo"<option value=\"$data_obat[kode_obat]\"> $data_obat[kode_obat] | $data_obat[nama_obat] </option>";

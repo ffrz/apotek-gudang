@@ -13,7 +13,7 @@ if (isset($_POST['simpan'])) {
         $id_user = $_SESSION['id_user'];
 
         // seleksi password dari tabel user untuk dicek
-        $sql = mysqli_query($mysqli, "SELECT password FROM is_users WHERE id_user=$id_user")
+        $sql = mysqli_query($mysqli, "SELECT password FROM users WHERE id_user=$id_user")
             or die('Ada kesalahan pada query seleksi password : ' . mysqli_error($mysqli));
         $data = mysqli_fetch_assoc($sql);
 
@@ -36,7 +36,7 @@ if (isset($_POST['simpan'])) {
             // selain itu, jalankan perintah update password
             else {
                 // perintah query untuk mengubah data pada tabel user
-                $query = mysqli_query($mysqli, "UPDATE is_users SET password = '$new_pass'
+                $query = mysqli_query($mysqli, "UPDATE users SET password = '$new_pass'
                                                                   WHERE id_user  = '$id_user'")
                     or die('Ada kesalahan pada query update password : ' . mysqli_error($mysqli));
 

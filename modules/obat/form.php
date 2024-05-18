@@ -93,7 +93,7 @@ if ($_GET['form'] == 'add') { ?>
 elseif ($_GET['form'] == 'edit') {
   if (isset($_GET['id'])) {
     // fungsi query untuk menampilkan data dari tabel obat
-    $query = mysqli_query($mysqli, "SELECT kode_obat,nama_obat,harga_beli,harga_jual,satuan FROM is_obat WHERE kode_obat='$_GET[id]'")
+    $query = mysqli_query($mysqli, "SELECT kode_obat,nama_obat,harga_beli,harga_jual,satuan FROM obat WHERE kode_obat='$_GET[id]'")
       or die('Ada kesalahan pada query tampil Data obat : ' . mysqli_error($mysqli));
     $data  = mysqli_fetch_assoc($query);
   }

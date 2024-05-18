@@ -16,14 +16,14 @@ if ($_GET['act'] == 'insert') {
         $created_user    = $_SESSION['id_user'];
 
         // perintah query untuk menyimpan data ke tabel obat masuk
-        $query = mysqli_query($mysqli, "INSERT INTO is_obat_masuk(kode_transaksi,tanggal_masuk,kode_obat,jumlah_masuk,created_user) 
+        $query = mysqli_query($mysqli, "INSERT INTO obat_masuk(kode_transaksi,tanggal_masuk,kode_obat,jumlah_masuk,created_user) 
                                             VALUES('$kode_transaksi','$tanggal_masuk','$kode_obat','$jumlah_masuk','$created_user')")
             or die('Ada kesalahan pada query insert : ' . mysqli_error($mysqli));
 
         // cek query
         if ($query) {
             // perintah query untuk mengubah data pada tabel obat
-            $query1 = mysqli_query($mysqli, "UPDATE is_obat SET stok        = '$total_stok'
+            $query1 = mysqli_query($mysqli, "UPDATE obat SET stok        = '$total_stok'
                                                               WHERE kode_obat   = '$kode_obat'")
                 or die('Ada kesalahan pada query update : ' . mysqli_error($mysqli));
 
@@ -37,21 +37,21 @@ if ($_GET['act'] == 'insert') {
 } else if ($_GET['act'] == 'delete') {
     $kode_transaksi = mysqli_real_escape_string($mysqli, trim($_GET['kode_transaksi']));
 
-    $query = mysqli_query($mysqli, "SELECT * FROM is_obat_masuk WHERE kode_transaksi='$kode_transaksi'")
+    $query = mysqli_query($mysqli, "SELECT * FROM obat_masuk WHERE kode_transaksi='$kode_transaksi'")
         or die('Ada kesalahan pada query delete : ' . mysqli_error($mysqli));
     $obat_masuk = mysqli_fetch_assoc($query);
     $kode_obat = $obat_masuk['kode_obat'];
-    $query = mysqli_query($mysqli, "SELECT * FROM is_obat WHERE kode_obat='$kode_obat'")
+    $query = mysqli_query($mysqli, "SELECT * FROM obat WHERE kode_obat='$kode_obat'")
         or die('Ada kesalahan pada query delete : ' . mysqli_error($mysqli));
     $obat = mysqli_fetch_assoc($query);
     $stok_sebelumnya = $obat['stok'] - $obat_masuk['jumlah_masuk'];
 
     mysqli_begin_transaction($mysqli);
     // perintah query untuk mengembalikan stok pada tabel obat
-    $query = mysqli_query($mysqli, "UPDATE is_obat SET stok='$stok_sebelumnya' WHERE kode_obat='$kode_obat'")
+    $query = mysqli_query($mysqli, "UPDATE obat SET stok='$stok_sebelumnya' WHERE kode_obat='$kode_obat'")
         or die('Ada kesalahan pada query update : ' . mysqli_error($mysqli));
     // perintah query untuk menghapus data pada tabel obat masuk
-    $query = mysqli_query($mysqli, "DELETE FROM is_obat_masuk WHERE kode_transaksi='$kode_transaksi'")
+    $query = mysqli_query($mysqli, "DELETE FROM obat_masuk WHERE kode_transaksi='$kode_transaksi'")
         or die('Ada kesalahan pada query delete : ' . mysqli_error($mysqli));
     mysqli_commit($mysqli);
 

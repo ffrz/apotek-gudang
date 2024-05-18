@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['id_user'])) {
   // fungsi query untuk menampilkan data dari tabel user
-  $query = mysqli_query($mysqli, "SELECT * FROM is_users WHERE id_user='$_POST[id_user]'")
+  $query = mysqli_query($mysqli, "SELECT * FROM users WHERE id_user='$_POST[id_user]'")
     or die('Ada kesalahan pada query tampil data user : ' . mysqli_error($mysqli));
   $data  = mysqli_fetch_assoc($query);
 }

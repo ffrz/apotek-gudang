@@ -31,7 +31,7 @@ if ($_GET['act'] == 'update') {
 			// jika foto tidak diubah
 			if (empty($_FILES['foto']['name'])) {
 				// perintah query untuk mengubah data pada tabel users
-				$query = mysqli_query($mysqli, "UPDATE is_users SET username 	= '$username',
+				$query = mysqli_query($mysqli, "UPDATE users SET username 	= '$username',
                     													nama_user 	= '$nama_user',
                     													email       = '$email',
                     													telepon     = '$telepon'
@@ -55,7 +55,7 @@ if ($_GET['act'] == 'update') {
 						if (move_uploaded_file($tmp_file, $path_file)) { // Cek apakah gambar berhasil diupload atau tidak
 							// Jika gambar berhasil diupload, Lakukan : 
 							// perintah query untuk mengubah data pada tabel users
-							$query = mysqli_query($mysqli, "UPDATE is_users SET username 	= '$username',
+							$query = mysqli_query($mysqli, "UPDATE users SET username 	= '$username',
 			                    													nama_user 	= '$nama_user',
 			                    													email       = '$email',
 			                    													telepon     = '$telepon',

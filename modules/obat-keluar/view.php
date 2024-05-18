@@ -10,8 +10,8 @@ $query = mysqli_query($mysqli, "
     b.kode_obat,
     b.nama_obat,
     b.satuan
-  FROM is_obat_keluar as a
-  INNER JOIN is_obat as b ON a.kode_obat=b.kode_obat
+  FROM obat_keluar as a
+  INNER JOIN obat as b ON a.kode_obat=b.kode_obat
   ORDER BY kode_transaksi DESC
   ")
   or die('Ada kesalahan pada query tampil Data Obat Keluar: ' . mysqli_error($mysqli));

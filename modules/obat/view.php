@@ -46,7 +46,7 @@
               <?php
               $no = 1;
               // fungsi query untuk menampilkan data dari tabel obat
-              $query = mysqli_query($mysqli, "SELECT kode_obat,nama_obat,harga_beli,harga_jual,satuan,stok FROM is_obat ORDER BY kode_obat DESC")
+              $query = mysqli_query($mysqli, "SELECT kode_obat,nama_obat,harga_beli,harga_jual,satuan,stok FROM obat ORDER BY kode_obat DESC")
                 or die('Ada kesalahan pada query tampil Data Obat: ' . mysqli_error($mysqli));
               ?>
               <?php while ($data = mysqli_fetch_assoc($query)) : ?>

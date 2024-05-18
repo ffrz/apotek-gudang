@@ -1,6 +1,6 @@
 <?php
 /// fungsi query untuk menampilkan data dari tabel user
-$query = mysqli_query($mysqli, "SELECT * FROM is_users ORDER BY id_user DESC")
+$query = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id_user DESC")
   or die('Ada kesalahan pada query tampil data user: ' . mysqli_error($mysqli));
 $rows = [];
 while ($row = mysqli_fetch_assoc($query)) {

@@ -8,7 +8,7 @@ $tgl_akhir = date_from_input($_GET['tgl_akhir']);
 
 // fungsi query untuk menampilkan data dari tabel obat masuk
 $query = mysqli_query($mysqli, "SELECT a.kode_transaksi,a.tanggal_masuk,a.kode_obat,a.jumlah_masuk,b.kode_obat,b.nama_obat,b.satuan
-    FROM is_obat_masuk as a INNER JOIN is_obat as b ON a.kode_obat=b.kode_obat
+    FROM obat_masuk as a INNER JOIN obat as b ON a.kode_obat=b.kode_obat
     WHERE a.tanggal_masuk BETWEEN '$tgl_awal' AND '$tgl_akhir'
     ORDER BY a.kode_transaksi ASC")
     or die('Ada kesalahan pada query tampil Transaksi : ' . mysqli_error($mysqli));

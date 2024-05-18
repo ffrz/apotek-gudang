@@ -1,5 +1,5 @@
 <?php
-$query = mysqli_query($mysqli, "SELECT id_user, nama_user, foto, hak_akses FROM is_users WHERE id_user='$_SESSION[id_user]'")
+$query = mysqli_query($mysqli, "SELECT id_user, nama_user, foto, hak_akses FROM users WHERE id_user='$_SESSION[id_user]'")
   or die('Ada kesalahan pada query tampil Manajemen User: ' . mysqli_error($mysqli));
 $data = mysqli_fetch_assoc($query);
 ?>

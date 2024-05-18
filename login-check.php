@@ -11,7 +11,7 @@ if (!ctype_alnum($username) or !ctype_alnum($password)) {
 	header("Location: index.php?alert=1");
 } else {
 	// ambil data dari tabel user untuk pengecekan berdasarkan inputan username dan passrword
-	$query = mysqli_query($mysqli, "SELECT * FROM is_users WHERE username='$username'")
+	$query = mysqli_query($mysqli, "SELECT * FROM users WHERE username='$username'")
 		or die('Ada kesalahan pada query user: ' . mysqli_error($mysqli));
 	$rows  = mysqli_num_rows($query);
 

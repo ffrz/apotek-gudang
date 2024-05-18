@@ -12,7 +12,7 @@ if ($_GET['act'] == 'insert') {
 		$hak_akses = mysqli_real_escape_string($mysqli, trim($_POST['hak_akses']));
 
 		// perintah query untuk menyimpan data ke tabel users
-		$query = mysqli_query($mysqli, "INSERT INTO is_users(username,password,nama_user,hak_akses)
+		$query = mysqli_query($mysqli, "INSERT INTO users(username,password,nama_user,hak_akses)
                                             VALUES('$username','$password','$nama_user','$hak_akses')")
 			or die('Ada kesalahan pada query insert : ' . mysqli_error($mysqli));
 
@@ -55,7 +55,7 @@ elseif ($_GET['act'] == 'update') {
 			// jika password tidak diubah dan foto tidak diubah
 			if (empty($_POST['password']) && empty($_FILES['foto']['name'])) {
 				// perintah query untuk mengubah data pada tabel users
-				$query = mysqli_query($mysqli, "UPDATE is_users SET username 	= '$username',
+				$query = mysqli_query($mysqli, "UPDATE users SET username 	= '$username',
                     													nama_user 	= '$nama_user',
                     													email       = '$email',
                     													telepon     = '$telepon',
@@ -72,7 +72,7 @@ elseif ($_GET['act'] == 'update') {
 			// jika password diubah dan foto tidak diubah
 			elseif (!empty($_POST['password']) && empty($_FILES['foto']['name'])) {
 				// perintah query untuk mengubah data pada tabel users
-				$query = mysqli_query($mysqli, "UPDATE is_users SET username 	= '$username',
+				$query = mysqli_query($mysqli, "UPDATE users SET username 	= '$username',
                     													nama_user 	= '$nama_user',
                     													password 	= '$password',
                     													email       = '$email',
@@ -98,7 +98,7 @@ elseif ($_GET['act'] == 'update') {
 						if (move_uploaded_file($tmp_file, $path_file)) { // Cek apakah gambar berhasil diupload atau tidak
 							// Jika gambar berhasil diupload, Lakukan : 
 							// perintah query untuk mengubah data pada tabel users
-							$query = mysqli_query($mysqli, "UPDATE is_users SET username 	= '$username',
+							$query = mysqli_query($mysqli, "UPDATE users SET username 	= '$username',
 			                    													nama_user 	= '$nama_user',
 			                    													email       = '$email',
 			                    													telepon     = '$telepon',
@@ -136,7 +136,7 @@ elseif ($_GET['act'] == 'update') {
 						if (move_uploaded_file($tmp_file, $path_file)) { // Cek apakah gambar berhasil diupload atau tidak
 							// Jika gambar berhasil diupload, Lakukan : 
 							// perintah query untuk mengubah data pada tabel users
-							$query = mysqli_query($mysqli, "UPDATE is_users SET username 	= '$username',
+							$query = mysqli_query($mysqli, "UPDATE users SET username 	= '$username',
 			                    													nama_user 	= '$nama_user',
 			                    													password    = '$password',
 			                    													email       = '$email',
@@ -176,7 +176,7 @@ elseif ($_GET['act'] == 'on') {
 		$status  = "aktif";
 
 		// perintah query untuk mengubah data pada tabel users
-		$query = mysqli_query($mysqli, "UPDATE is_users SET status  = '$status' WHERE id_user = '$id_user'")
+		$query = mysqli_query($mysqli, "UPDATE users SET status  = '$status' WHERE id_user = '$id_user'")
 			or die('Ada kesalahan pada query update status on : ' . mysqli_error($mysqli));
 
 		// cek query
@@ -195,7 +195,7 @@ elseif ($_GET['act'] == 'off') {
 		$status  = "blokir";
 
 		// perintah query untuk mengubah data pada tabel users
-		$query = mysqli_query($mysqli, "UPDATE is_users SET status = '$status' WHERE id_user = '$id_user'")
+		$query = mysqli_query($mysqli, "UPDATE users SET status = '$status' WHERE id_user = '$id_user'")
 			or die('Ada kesalahan pada query update status on : ' . mysqli_error($mysqli));
 
 		// cek query

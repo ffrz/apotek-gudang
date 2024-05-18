@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `is_obat`
+-- Table structure for table `obat`
 --
 
-CREATE TABLE `is_obat` (
+CREATE TABLE `obat` (
   `kode_obat` varchar(7) NOT NULL,
   `nama_obat` varchar(50) NOT NULL,
   `harga_beli` int(11) NOT NULL,
@@ -41,10 +41,10 @@ CREATE TABLE `is_obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `is_obat`
+-- Dumping data for table `obat`
 --
 
-INSERT INTO `is_obat` (`kode_obat`, `nama_obat`, `harga_beli`, `harga_jual`, `satuan`, `stok`, `created_user`, `created_date`, `updated_user`, `updated_date`) VALUES
+INSERT INTO `obat` (`kode_obat`, `nama_obat`, `harga_beli`, `harga_jual`, `satuan`, `stok`, `created_user`, `created_date`, `updated_user`, `updated_date`) VALUES
 ('B000001', 'Zoralin', 232500, 310000, ' Box ', 0, 3, '2024-03-31 17:00:00', 3, '2024-03-31 17:00:00'),
 ('B000002', 'Zinc', 67500, 90000, ' Box ', 0, 3, '2024-04-01 17:00:00', 3, '2024-04-01 17:00:00'),
 ('B000003', 'Zevit Grow', 8250, 11000, ' Kotak ', 0, 3, '2024-04-02 17:00:00', 3, '2024-04-02 17:00:00'),
@@ -409,10 +409,10 @@ INSERT INTO `is_obat` (`kode_obat`, `nama_obat`, `harga_beli`, `harga_jual`, `sa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `is_obat_keluar`
+-- Table structure for table `obat_keluar`
 --
 
-CREATE TABLE `is_obat_keluar` (
+CREATE TABLE `obat_keluar` (
   `kode_transaksi` varchar(15) NOT NULL,
   `tanggal_keluar` date NOT NULL,
   `kode_obat` varchar(7) NOT NULL,
@@ -422,10 +422,10 @@ CREATE TABLE `is_obat_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `is_obat_keluar`
+-- Dumping data for table `obat_keluar`
 --
 
-INSERT INTO `is_obat_keluar` (`kode_transaksi`, `tanggal_keluar`, `kode_obat`, `jumlah_keluar`, `created_user`, `created_date`) VALUES
+INSERT INTO `obat_keluar` (`kode_transaksi`, `tanggal_keluar`, `kode_obat`, `jumlah_keluar`, `created_user`, `created_date`) VALUES
 ('TK-2024-0000001', '2024-05-02', 'B000236', 50, 1, '2024-05-18 11:12:30'),
 ('TK-2024-0000002', '2024-05-15', 'B000236', 20, 1, '2024-05-18 11:12:54'),
 ('TK-2024-0000003', '2024-05-02', 'B000327', 25, 1, '2024-05-18 11:13:03'),
@@ -435,10 +435,10 @@ INSERT INTO `is_obat_keluar` (`kode_transaksi`, `tanggal_keluar`, `kode_obat`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `is_obat_masuk`
+-- Table structure for table `obat_masuk`
 --
 
-CREATE TABLE `is_obat_masuk` (
+CREATE TABLE `obat_masuk` (
   `kode_transaksi` varchar(15) NOT NULL,
   `tanggal_masuk` date NOT NULL,
   `kode_obat` varchar(7) NOT NULL,
@@ -448,10 +448,10 @@ CREATE TABLE `is_obat_masuk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `is_obat_masuk`
+-- Dumping data for table `obat_masuk`
 --
 
-INSERT INTO `is_obat_masuk` (`kode_transaksi`, `tanggal_masuk`, `kode_obat`, `jumlah_masuk`, `created_user`, `created_date`) VALUES
+INSERT INTO `obat_masuk` (`kode_transaksi`, `tanggal_masuk`, `kode_obat`, `jumlah_masuk`, `created_user`, `created_date`) VALUES
 ('TM-2024-0000001', '2024-04-10', 'B000360', 100, 1, '2024-05-18 11:11:32'),
 ('TM-2024-0000002', '2024-04-10', 'B000327', 100, 1, '2024-05-18 11:11:45'),
 ('TM-2024-0000003', '2024-04-19', 'B000236', 100, 1, '2024-05-18 11:12:00');
@@ -459,10 +459,10 @@ INSERT INTO `is_obat_masuk` (`kode_transaksi`, `tanggal_masuk`, `kode_obat`, `ju
 -- --------------------------------------------------------
 
 --
--- Table structure for table `is_users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `is_users` (
+CREATE TABLE `users` (
   `id_user` int(3) NOT NULL,
   `username` varchar(50) NOT NULL,
   `nama_user` varchar(50) NOT NULL,
@@ -477,10 +477,10 @@ CREATE TABLE `is_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `is_users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `is_users` (`id_user`, `username`, `nama_user`, `password`, `email`, `telepon`, `foto`, `hak_akses`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id_user`, `username`, `nama_user`, `password`, `email`, `telepon`, `foto`, `hak_akses`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Administrator', '827ccb0eea8a706c4c34a16891f84e7b', 'admin@apotek.local', '081212341234', 'admin.jpg', 'Admin', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:52:29'),
 (2, 'owner', 'Owner', '827ccb0eea8a706c4c34a16891f84e7b', 'owner@apotek.local', '081212341234', 'kadina.png', 'Owner', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:55:51'),
 (3, 'gudang', 'Gudang', '827ccb0eea8a706c4c34a16891f84e7b', 'gudang@apotek.local', '081212341234', '', 'Gudang', 'aktif', '2024-04-01 08:15:15', '2024-05-18 06:49:16');
@@ -490,33 +490,33 @@ INSERT INTO `is_users` (`id_user`, `username`, `nama_user`, `password`, `email`,
 --
 
 --
--- Indexes for table `is_obat`
+-- Indexes for table `obat`
 --
-ALTER TABLE `is_obat`
+ALTER TABLE `obat`
   ADD PRIMARY KEY (`kode_obat`),
   ADD KEY `created_user` (`created_user`),
   ADD KEY `updated_user` (`updated_user`);
 
 --
--- Indexes for table `is_obat_keluar`
+-- Indexes for table `obat_keluar`
 --
-ALTER TABLE `is_obat_keluar`
+ALTER TABLE `obat_keluar`
   ADD PRIMARY KEY (`kode_transaksi`),
   ADD KEY `id_barang` (`kode_obat`),
   ADD KEY `created_user` (`created_user`);
 
 --
--- Indexes for table `is_obat_masuk`
+-- Indexes for table `obat_masuk`
 --
-ALTER TABLE `is_obat_masuk`
+ALTER TABLE `obat_masuk`
   ADD PRIMARY KEY (`kode_transaksi`),
   ADD KEY `id_barang` (`kode_obat`),
   ADD KEY `created_user` (`created_user`);
 
 --
--- Indexes for table `is_users`
+-- Indexes for table `users`
 --
-ALTER TABLE `is_users`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `level` (`hak_akses`);
 
@@ -525,9 +525,9 @@ ALTER TABLE `is_users`
 --
 
 --
--- AUTO_INCREMENT for table `is_users`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `is_users`
+ALTER TABLE `users`
   MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
@@ -535,20 +535,20 @@ ALTER TABLE `is_users`
 --
 
 --
--- Constraints for table `is_obat`
+-- Constraints for table `obat`
 --
-ALTER TABLE `is_obat`
-  ADD CONSTRAINT `is_obat_ibfk_1` FOREIGN KEY (`created_user`) REFERENCES `is_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `is_obat_ibfk_2` FOREIGN KEY (`updated_user`) REFERENCES `is_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `obat`
+  ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`created_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `obat_ibfk_2` FOREIGN KEY (`updated_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `is_obat_masuk`
+-- Constraints for table `obat_masuk`
 --
-ALTER TABLE `is_obat_masuk`
-  ADD CONSTRAINT `is_obat_keluar_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `is_obat` (`kode_obat`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `is_obat_keluar_ibfk_2` FOREIGN KEY (`created_user`) REFERENCES `is_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `is_obat_masuk_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `is_obat` (`kode_obat`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `is_obat_masuk_ibfk_2` FOREIGN KEY (`created_user`) REFERENCES `is_users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `obat_masuk`
+  ADD CONSTRAINT `obat_keluar_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `obat` (`kode_obat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `obat_keluar_ibfk_2` FOREIGN KEY (`created_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `obat_masuk_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `obat` (`kode_obat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `obat_masuk_ibfk_2` FOREIGN KEY (`created_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

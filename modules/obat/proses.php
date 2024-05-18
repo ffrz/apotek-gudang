@@ -18,7 +18,7 @@ if ($_GET['act'] == 'insert') {
         $created_user = $_SESSION['id_user'];
 
         // perintah query untuk menyimpan data ke tabel obat
-        $query = mysqli_query($mysqli, "INSERT INTO is_obat(kode_obat,nama_obat,harga_beli,harga_jual,stok,satuan,created_user,updated_user) 
+        $query = mysqli_query($mysqli, "INSERT INTO obat(kode_obat,nama_obat,harga_beli,harga_jual,stok,satuan,created_user,updated_user) 
                                             VALUES('$kode_obat','$nama_obat','$harga_beli','$harga_jual','$stok','$satuan','$created_user','$created_user')")
             or die('Ada kesalahan pada query insert : ' . mysqli_error($mysqli));
 
@@ -41,7 +41,7 @@ if ($_GET['act'] == 'insert') {
             $updated_user = $_SESSION['id_user'];
 
             // perintah query untuk mengubah data pada tabel obat
-            $query = mysqli_query($mysqli, "UPDATE is_obat SET  nama_obat       = '$nama_obat',
+            $query = mysqli_query($mysqli, "UPDATE obat SET  nama_obat       = '$nama_obat',
                                                                     harga_beli      = '$harga_beli',
                                                                     harga_jual      = '$harga_jual',
                                                                     satuan          = '$satuan',
@@ -61,7 +61,7 @@ if ($_GET['act'] == 'insert') {
         $kode_obat = $_GET['id'];
 
         // perintah query untuk menghapus data pada tabel obat
-        $query = mysqli_query($mysqli, "DELETE FROM is_obat WHERE kode_obat='$kode_obat'")
+        $query = mysqli_query($mysqli, "DELETE FROM obat WHERE kode_obat='$kode_obat'")
             or die('Ada kesalahan pada query delete : ' . mysqli_error($mysqli));
 
         // cek hasil query
