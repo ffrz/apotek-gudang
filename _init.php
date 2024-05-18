@@ -1,8 +1,6 @@
 <?php
 
-$base_url = '';
-
-require_once "config/database.php";
+require_once "_config.php";
 require_once "helper/fungsi.php";
 require_once "helper/database.php";
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once "config/database.php";
+require_once "_config.php";
 
 // ambil data hasil submit dari form
 $username = mysqli_real_escape_string($mysqli, stripslashes(strip_tags(htmlspecialchars(trim($_POST['username'])))));
