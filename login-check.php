@@ -38,16 +38,11 @@ if (!ctype_alnum($username) or !ctype_alnum($password)) {
 			$_SESSION['hak_akses'] = $data['hak_akses'];
 			// lalu alihkan ke halaman user
 			header("Location: main.php?module=beranda");
+			exit;
 		}
 	}
 
 	// jika data tidak ada, alihkan ke halaman login dan tampilkan pesan = 1
-	else {
-		echo '<pre>';
-		echo $sql;
-		echo '</pre>';
-		die();
-		header("Location: index.php?alert=1");
-	}
+	header("Location: index.php?alert=1");
 }
 ?>
