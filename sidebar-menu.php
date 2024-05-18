@@ -1,5 +1,4 @@
 <ul class="sidebar-menu">
-  <li class="header">MAIN MENU</li>
   <li class="<?= $_GET["module"] == "beranda" ? 'active' : '' ?>">
     <a href="?module=beranda"><i class="fa fa-home"></i> Beranda </a>
   </li>
