@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-file-text-o icon-title"></i> Laporan Data Obat Masuk
+    <i class="fa fa-file-text-o icon-title"></i> Laporan Data Obat Keluar
   </h1>
   <ol class="breadcrumb">
     <li><a href="?module=beranda"><i class="fa fa-home"></i> Beranda</a></li>
     <li class="active">Laporan</li>
-    <li class="active">Data Obat Masuk</li>
+    <li class="active">Data Obat Keluar</li>
   </ol>
 </section>
 <!-- Main content -->
@@ -16,7 +16,7 @@
       <!-- Form Laporan -->
       <div class="box box-primary">
         <!-- form start -->
-        <form role="form" class="form-horizontal" method="GET" action="modules/lap-obat-masuk/cetak.php" target="_blank">
+        <form role="form" class="form-horizontal" method="GET" action="modules/lap-obat-keluar/cetak.php" target="_blank">
           <div class="box-body">
             <div class="form-group">
               <label class="col-sm-1">Tanggal</label>
@@ -41,5 +41,5 @@
         </form>
       </div><!-- /.box -->
     </div><!--/.col -->
-  </div>   <!-- /.row -->
+  </div> <!-- /.row -->
 </section><!-- /.content -->

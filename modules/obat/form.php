@@ -1,19 +1,9 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
-
- <?php  
+<?php
 // fungsi untuk pengecekan tampilan form
 // jika form add data yang dipilih
-if ($_GET['form']=='add') { ?> 
+if ($_GET['form'] == 'add') { ?>
   <!-- tampilan form add data -->
-	<!-- Content Header (Page header) -->
+  <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
       <i class="fa fa-edit icon-title"></i> Input Obat
@@ -33,31 +23,10 @@ if ($_GET['form']=='add') { ?>
           <!-- form start -->
           <form role="form" class="form-horizontal" action="modules/obat/proses.php?act=insert" method="POST">
             <div class="box-body">
-              <?php  
-              // fungsi untuk membuat id transaksi
-              $query_id = mysqli_query($mysqli, "SELECT RIGHT(kode_obat,6) as kode FROM is_obat
-                                                ORDER BY kode_obat DESC LIMIT 1")
-                                                or die('Ada kesalahan pada query tampil kode_obat : '.mysqli_error($mysqli));
-
-              $count = mysqli_num_rows($query_id);
-
-              if ($count <> 0) {
-                  // mengambil data kode_obat
-                  $data_id = mysqli_fetch_assoc($query_id);
-                  $kode    = $data_id['kode']+1;
-              } else {
-                  $kode = 1;
-              }
-
-              // buat kode_obat
-              $buat_id   = str_pad($kode, 6, "0", STR_PAD_LEFT);
-              $kode_obat = "B$buat_id";
-              ?>
-
               <div class="form-group">
                 <label class="col-sm-2 control-label">Kode Obat</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="kode_obat" value="<?php echo $kode_obat; ?>" readonly required>
+                  <input type="text" class="form-control" name="kode_obat" value="<?= generate_kode_obat() ?>" readonly required>
                 </div>
               </div>
 
@@ -115,19 +84,19 @@ if ($_GET['form']=='add') { ?>
           </form>
         </div><!-- /.box -->
       </div><!--/.col -->
-    </div>   <!-- /.row -->
+    </div> <!-- /.row -->
   </section><!-- /.content -->
 <?php
 }
 // jika form edit data yang dipilih
 // isset : cek data ada / tidak
-elseif ($_GET['form']=='edit') { 
+elseif ($_GET['form'] == 'edit') {
   if (isset($_GET['id'])) {
-      // fungsi query untuk menampilkan data dari tabel obat
-      $query = mysqli_query($mysqli, "SELECT kode_obat,nama_obat,harga_beli,harga_jual,satuan FROM is_obat WHERE kode_obat='$_GET[id]'") 
-                                      or die('Ada kesalahan pada query tampil Data obat : '.mysqli_error($mysqli));
-      $data  = mysqli_fetch_assoc($query);
-    }
+    // fungsi query untuk menampilkan data dari tabel obat
+    $query = mysqli_query($mysqli, "SELECT kode_obat,nama_obat,harga_beli,harga_jual,satuan FROM obat WHERE kode_obat='$_GET[id]'")
+      or die('Ada kesalahan pada query tampil Data obat : ' . mysqli_error($mysqli));
+    $data  = mysqli_fetch_assoc($query);
+  }
 ?>
   <!-- tampilan form edit data -->
   <!-- Content Header (Page header) -->
@@ -150,18 +119,18 @@ elseif ($_GET['form']=='edit') {
           <!-- form start -->
           <form role="form" class="form-horizontal" action="modules/obat/proses.php?act=update" method="POST">
             <div class="box-body">
-              
+
               <div class="form-group">
                 <label class="col-sm-2 control-label">Kode Obat</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="kode_obat" value="<?php echo $data['kode_obat']; ?>" readonly required>
+                  <input type="text" class="form-control" name="kode_obat" value="<?= $data['kode_obat']; ?>" readonly required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">Nama obat</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="nama_obat" autocomplete="off" value="<?php echo $data['nama_obat']; ?>" required>
+                  <input type="text" class="form-control" name="nama_obat" autocomplete="off" value="<?= $data['nama_obat']; ?>" required>
                 </div>
               </div>
 
@@ -170,7 +139,7 @@ elseif ($_GET['form']=='edit') {
                 <div class="col-sm-5">
                   <div class="input-group">
                     <span class="input-group-addon">Rp.</span>
-                    <input type="text" class="form-control" id="harga_beli" name="harga_beli" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo format_rupiah($data['harga_beli']); ?>" required>
+                    <input type="text" class="form-control" id="harga_beli" name="harga_beli" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?= format_rupiah($data['harga_beli']); ?>" required>
                   </div>
                 </div>
               </div>
@@ -180,7 +149,7 @@ elseif ($_GET['form']=='edit') {
                 <div class="col-sm-5">
                   <div class="input-group">
                     <span class="input-group-addon">Rp.</span>
-                    <input type="text" class="form-control" id="harga_jual" name="harga_jual" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo format_rupiah($data['harga_jual']); ?>" required>
+                    <input type="text" class="form-control" id="harga_jual" name="harga_jual" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?= format_rupiah($data['harga_jual']); ?>" required>
                   </div>
                 </div>
               </div>
@@ -189,7 +158,7 @@ elseif ($_GET['form']=='edit') {
                 <label class="col-sm-2 control-label">Satuan</label>
                 <div class="col-sm-5">
                   <select class="chosen-select" name="satuan" data-placeholder="-- Pilih --" autocomplete="off" required>
-                    <option value="<?php echo $data['satuan']; ?>"><?php echo $data['satuan']; ?></option>
+                    <option value="<?= $data['satuan']; ?>"><?= $data['satuan']; ?></option>
                     <option value="Botol">Botol</option>
                     <option value="Box">Box</option>
                     <option value="Kotak">Kotak</option>
@@ -212,7 +181,7 @@ elseif ($_GET['form']=='edit') {
           </form>
         </div><!-- /.box -->
       </div><!--/.col -->
-    </div>   <!-- /.row -->
+    </div> <!-- /.row -->
   </section><!-- /.content -->
 <?php
 }

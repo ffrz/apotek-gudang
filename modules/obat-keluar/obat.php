@@ -37,3 +37,4 @@ if(isset($_POST['dataidobat'])) {
               </div>";
 	}		
 }
+?> 

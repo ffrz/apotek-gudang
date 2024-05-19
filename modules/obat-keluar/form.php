@@ -1,53 +1,52 @@
 <script type="text/javascript">
-  function tampil_obat(input){
+  function tampil_obat(input) {
     var num = input.value;
 
-    $.post("modules/obat-masuk/obat.php", {
+    $.post("modules/obat-keluar/obat.php", {
       dataidobat: num,
-    }, function(response) {      
+    }, function(response) {
       $('#stok').html(response)
 
-      document.getElementById('jumlah_masuk').focus();
+      document.getElementById('jumlah_Keluar').focus();
     });
   }
 
-  function cek_jumlah_masuk(input) {
-    jml = document.formObatMasuk.jumlah_masuk.value;
+  function cek_jumlah_keluar(input) {
+    jml = document.formObatKeluar.jumlah_keluar.value;
     var jumlah = eval(jml);
-    if(jumlah < 1){
-      alert('Jumlah Masuk Tidak Boleh Nol !!');
-      input.value = input.value.substring(0,input.value.length-1);
+    if (jumlah < 1) {
+      alert('Jumlah Keluar Tidak Boleh Nol !!');
+      input.value = input.value.substring(0, input.value.length - 1);
     }
   }
 
   function hitung_total_stok() {
-    bil1 = document.formObatMasuk.stok.value;
-    bil2 = document.formObatMasuk.jumlah_masuk.value;
+    bil1 = document.formObatKeluar.stok.value;
+    bil2 = document.formObatKeluar.jumlah_keluar.value;
 
     if (bil2 == "") {
       var hasil = "";
-    }
-    else {
-      var hasil = eval(bil1) + eval(bil2);
+    } else {
+      var hasil = eval(bil1) - eval(bil2);
     }
 
-    document.formObatMasuk.total_stok.value = (hasil);
+    document.formObatKeluar.total_stok.value = (hasil);
   }
 </script>
 
-<?php  
+<?php
 // fungsi untuk pengecekan tampilan form
 // jika form add data yang dipilih
-if ($_GET['form']=='add') { ?> 
+if ($_GET['form'] == 'add') { ?>
   <!-- tampilan form add data -->
-	<!-- Content Header (Page header) -->
+  <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      <i class="fa fa-edit icon-title"></i> Input Data Obat Masuk
+      <i class="fa fa-edit icon-title"></i> Input Data Obat Keluar
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=beranda"><i class="fa fa-home"></i> Beranda </a></li>
-      <li><a href="?module=obat_masuk"> Obat Masuk </a></li>
+      <li><a href="?module=obat_keluar"> Obat Keluar </a></li>
       <li class="active"> Tambah </li>
     </ol>
   </section>
@@ -58,28 +57,28 @@ if ($_GET['form']=='add') { ?>
       <div class="col-md-12">
         <div class="box box-primary">
           <!-- form start -->
-          <form role="form" class="form-horizontal" action="modules/obat-masuk/proses.php?act=insert" method="POST" name="formObatMasuk">
+          <form role="form" class="form-horizontal" action="modules/obat-keluar/proses.php?act=insert" method="POST" name="formObatKeluar">
             <div class="box-body">
-              <?php  
+              <?php
               // fungsi untuk membuat kode transaksi
-              $query_id = mysqli_query($mysqli, "SELECT RIGHT(kode_transaksi,7) as kode FROM obat_masuk
+              $query_id = mysqli_query($mysqli, "SELECT RIGHT(kode_transaksi,7) as kode FROM obat_keluar
                                                 ORDER BY kode_transaksi DESC LIMIT 1")
-                                                or die('Ada kesalahan pada query tampil kode_transaksi : '.mysqli_error($mysqli));
+                or die('Ada kesalahan pada query tampil kode_transaksi : ' . mysqli_error($mysqli));
 
               $count = mysqli_num_rows($query_id);
 
               if ($count <> 0) {
-                  // mengambil data kode transaksi
-                  $data_id = mysqli_fetch_assoc($query_id);
-                  $kode    = $data_id['kode']+1;
+                // mengambil data kode transaksi
+                $data_id = mysqli_fetch_assoc($query_id);
+                $kode    = $data_id['kode'] + 1;
               } else {
-                  $kode = 1;
+                $kode = 1;
               }
 
               // buat kode_transaksi
               $tahun          = date("Y");
               $buat_id        = str_pad($kode, 7, "0", STR_PAD_LEFT);
-              $kode_transaksi = "TM-$tahun-$buat_id";
+              $kode_transaksi = "TK-$tahun-$buat_id";
               ?>
 
               <div class="form-group">
@@ -92,7 +91,7 @@ if ($_GET['form']=='add') { ?>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Tanggal</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy" name="tanggal_masuk" autocomplete="off" value="<?= date("d-m-Y"); ?>" required>
+                  <input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy" name="tanggal_keluar" autocomplete="off" value="<?= date("d-m-Y"); ?>" required>
                 </div>
               </div>
 
@@ -104,29 +103,30 @@ if ($_GET['form']=='add') { ?>
                   <select class="chosen-select" name="kode_obat" data-placeholder="-- Pilih Obat --" onchange="tampil_obat(this)" autocomplete="off" required>
                     <option value=""></option>
                     <?php
-                      $query_obat = mysqli_query($mysqli, "SELECT kode_obat, nama_obat FROM obat ORDER BY nama_obat ASC")
-                                                            or die('Ada kesalahan pada query tampil obat: '.mysqli_error($mysqli));
-                      while ($data_obat = mysqli_fetch_assoc($query_obat)) {
-                        echo"<option value=\"$data_obat[kode_obat]\"> $data_obat[kode_obat] | $data_obat[nama_obat] </option>";
-                      }
+                    $query_obat = mysqli_query($mysqli, "SELECT kode_obat, nama_obat FROM obat ORDER BY nama_obat ASC")
+                      or die('Ada kesalahan pada query tampil obat: ' . mysqli_error($mysqli));
+                    while ($data_obat = mysqli_fetch_assoc($query_obat)) {
+                      echo "<option value=\"$data_obat[kode_obat]\"> $data_obat[kode_obat] | $data_obat[nama_obat] </option>";
+                    }
                     ?>
                   </select>
                 </div>
               </div>
-              
+
               <span id='stok'>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Stok</label>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="stok" name="stok" readonly required>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Stok</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="stok" name="stok" readonly required>
+                  </div>
                 </div>
-              </div>
               </span>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Jumlah Masuk</label>
+                <label class="col-sm-2 control-label">Jumlah Keluar</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="jumlah_masuk" name="jumlah_masuk" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" onkeyup="hitung_total_stok(this)&cek_jumlah_masuk(this)" required>
+                  <input type="text" class="form-control" id="jumlah_keluar" name="jumlah_keluar" autocomplete="off"
+                    onKeyPress="return goodchars(event,'0123456789',this)" onkeyup="hitung_total_stok(this)&cek_jumlah_keluar(this)" required>
                 </div>
               </div>
 
@@ -143,14 +143,14 @@ if ($_GET['form']=='add') { ?>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
-                  <a href="?module=obat_masuk" class="btn btn-default btn-reset">Batal</a>
+                  <a href="?module=obat_keluar" class="btn btn-default btn-reset">Batal</a>
                 </div>
               </div>
             </div><!-- /.box footer -->
           </form>
         </div><!-- /.box -->
       </div><!--/.col -->
-    </div>   <!-- /.row -->
+    </div> <!-- /.row -->
   </section><!-- /.content -->
 <?php
 }
