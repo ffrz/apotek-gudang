@@ -34,7 +34,7 @@
                   <td width='180'><?= $data['nama_obat'] ?></td>
                   <td width='100' class='right'><?= format_angka($data['harga_beli']) ?></td>
                   <td width='100' class='right'><?= format_angka($data['harga_jual']) ?></td>
-                  <td width='80' class='right'><?= format_angka($data['stok']) ?></td>
+                  <td width='80' class='right <?= $data['stok'] < 3 ? 'red' : '' ?>'><?= format_angka($data['stok']) ?></td>
                   <td width='80' class='center'><?= $data['satuan'] ?></td>
                 </tr>
               <?php endforeach ?>
